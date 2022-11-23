@@ -6,7 +6,5 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Npm install
-        run: cd second-action && npm install
-      - name: Run tests
-        run: npm run test
+      - name: Npm install and run tests
+        run: cd second-action && npm install && npm run test
