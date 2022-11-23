@@ -1,7 +1,7 @@
 name: First Workflow
 
 # Manually can start with this
-on: workflow_dispatch 
+on: workflow_dispatch
 
 jobs:
   first-job:
