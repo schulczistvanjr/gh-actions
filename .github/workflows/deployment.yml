@@ -13,6 +13,7 @@ jobs:
       - name: Npm install and run tests
         run: cd second-action && npm ci && npm run test
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get code
