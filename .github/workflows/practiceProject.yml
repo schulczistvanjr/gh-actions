@@ -7,7 +7,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Npm install and run tests
-        run: cd 04 Practice Project (Start) && npm ci && npm run lint && npm run test
+        run: cd Practice-Project && npm ci && npm run lint && npm run test
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -19,6 +19,6 @@ jobs:
         with:
           node-version: 18
       - name: Npm install and build project
-        run: cd 04 Practice Project (Start) && npm ci && npm run build
+        run: cd Practice-Project && npm ci && npm run build
       - name: Deploy
         run: echo "Deploying..."
