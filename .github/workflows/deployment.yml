@@ -3,6 +3,8 @@ on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -12,6 +14,9 @@ jobs:
           node-version: 18
       - name: Npm install and run tests
         run: cd second-action && npm ci && npm run test
+      - name: Publish asset filename
+        id: publish
+        run: find second-action/src/assets/images/*.png -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'  
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -37,5 +42,7 @@ jobs:
           name: dist-files
       - name: Output contents
         run: ls
+      - name: Output filename
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Deploy
         run: echo "Deploying..."
