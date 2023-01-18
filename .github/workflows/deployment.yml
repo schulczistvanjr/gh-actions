@@ -12,13 +12,6 @@ jobs:
           node-version: 18
       - name: Npm install and run tests
         run: cd second-action && npm ci && npm run test
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-files
-          path: |
-            dist
-            package.json
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -31,5 +24,12 @@ jobs:
           node-version: 18
       - name: Npm install and build project
         run: cd second-action && npm ci && npm run build
+        - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: |
+            dist
+            package.json
       - name: Deploy
         run: echo "Deploying..."
