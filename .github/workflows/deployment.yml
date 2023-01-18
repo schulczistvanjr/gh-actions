@@ -12,23 +12,30 @@ jobs:
           node-version: 18
       - name: Npm install and run tests
         run: cd second-action && npm ci && npm run test
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install NodeJS version 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Npm install and build project
-        run: cd second-action && npm ci && npm run build
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: |
-            second-action/src/assets/images
+          # path: |
+          #   second-action/src/assets/images
+          #   other directory/file/etc with multiple paths
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Get code
+      #   uses: actions/checkout@v3
+      # - name: Install NodeJS version 18
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      # - name: Npm install and build project
+      #   run: cd second-action && npm ci && npm run build
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
+      - name: Output contents
+        run: ls
       - name: Deploy
         run: echo "Deploying..."
