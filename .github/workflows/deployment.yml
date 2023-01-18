@@ -29,7 +29,6 @@ jobs:
         with:
           name: dist-files
           path: |
-            dist
-            package.json
+            second-action/src/assets/images
       - name: Deploy
         run: echo "Deploying..."
