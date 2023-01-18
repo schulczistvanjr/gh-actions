@@ -16,8 +16,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          # path: |
-          #   second-action/src/assets/images
+          path: |
+            second-action/src/assets/images
           #   other directory/file/etc with multiple paths
   deploy:
     needs: test
