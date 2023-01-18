@@ -12,6 +12,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install NodeJS version 18
         uses: actions/setup-node@v3
         with:
